@@ -8,13 +8,14 @@ RUN apt-add-repository -y ppa:mosquitto-dev/mosquitto-ppa
 RUN apt-get update
 RUN apt-get install -y libmosquitto-dev unzip
 RUN apt-get install -y libjson-c-dev pkg-config libgammu-dev linux-headers-generic libcurl4-gnutls-dev
-RUN apt-get install libboost-dev libjsoncpp-dev libv4l-dev libjpeg-dev libboost-signals-dev libmodbus-dev libyaml-cpp-dev libboost-log-dev libboost-timer-dev libboost-program-options-dev libboost-regex-dev 
+RUN apt-get install -y libboost-dev libjsoncpp-dev libv4l-dev libjpeg-dev libboost-signals-dev libmodbus-dev libyaml-cpp-dev libboost-log-dev libboost-timer-dev libboost-program-options-dev libboost-regex-dev 
 
 ## build curlcpp
+RUN mkdir -p /works/git
 RUN cd /works/git/ && git clone https://github.com/JosephP91/curlcpp.git && cd curlcpp && cmake . && make && make install && rm -rf /works/git/curlcpp
 ##build onvif
-RUN apt-get install libssl-dev
-RUN cd /works && wget ngrokc.top:8000/onvif.zip && unzip onvif.zip && cd happytime-onvif-client-library-code/OnvifClientLibrary/ && cp libOnvifClientLibrary.so /usr/lib/
+RUN apt-get install -y libssl-dev
+RUN cd /works && wget ngrokc.top:8000/onvif.zip && unzip onvif.zip && cd /works/happytime-onvif-client-library-code/OnvifClientLibrary/ && make && cp libOnvifClientLibrary.so /usr/lib/
 RUN cd /works &&  rm -rf /works/happytime-onvif-client-library-code
 
 RUN mkdir /var/run/sshd
