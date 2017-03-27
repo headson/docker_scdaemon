@@ -2,11 +2,11 @@ FROM ubuntu:16.04
 
 ## build curlcpp
 RUN mkdir -p /works/git
-COPY install.sh /works
+COPY installBaseSoftware.sh /works
 COPY installOnvf.sh /works
 COPY sshd.sh /works
 COPY instalOpenwrt.sh /works
-RUN sh /works/install.sh
+RUN sh /works/installBaseSoftware.sh
 RUN sh /works/installOnvf.sh
 RUN sh /works/sshd.sh
 RUN sh /works/instalOpenwrt.sh
