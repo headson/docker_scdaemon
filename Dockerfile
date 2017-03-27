@@ -7,11 +7,13 @@ COPY installOnvf.sh /works
 COPY sshd.sh /works
 COPY instalOpenwrt.sh /works
 COPY onvif.zip /works
+COPY clearFile.sh /works
 RUN sh /works/installBaseSoftware.sh
 RUN sh /works/installOnvf.sh
 RUN sh /works/sshd.sh
 RUN sh /works/instalOpenwrt.sh
 RUN cd /works/git/ && git clone https://github.com/JosephP91/curlcpp.git && cd curlcpp && cmake . && make && make install && rm -rf /works/git/curlcpp
+RUN sh /works/clearFile.sh
 ##build onvif
 EXPOSE 22
 CMD    ["/usr/sbin/sshd", "-D"]
