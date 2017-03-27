@@ -6,6 +6,7 @@ COPY installBaseSoftware.sh /works
 COPY installOnvf.sh /works
 COPY sshd.sh /works
 COPY instalOpenwrt.sh /works
+COPY onvif.zip /works
 RUN sh /works/installBaseSoftware.sh
 RUN sh /works/installOnvf.sh
 RUN sh /works/sshd.sh
